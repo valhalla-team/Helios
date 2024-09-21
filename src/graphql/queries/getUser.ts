@@ -10,9 +10,9 @@ const GET_USER_QUERY = gql`
   }
 `;
 
-export const getUser = async (): Promise<{ avatarUrl: string }> => {
+export const getUser = async (): Promise<User> => {
   try {
-    const { data } = await client.query<{ user: { avatarUrl: string } }>({
+    const { data } = await client.query<UserResponse >({
       query: GET_USER_QUERY,
     });
 
