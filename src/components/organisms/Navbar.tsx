@@ -1,12 +1,13 @@
 "use client"
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Image from 'next/image'
 import { motion } from 'framer-motion'
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
 import { Button } from "@/components/ui/button"
 import { MenuIcon } from 'lucide-react'
 import { ModeToggle } from '@/components/mode-toggle';
+import { getUser } from '@/graphql/queries/getUser'
 
 const navItems = [
   { name: 'Home', href: '#' },
@@ -17,6 +18,16 @@ const navItems = [
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
+  const [user, setUser] = useState<{ avatarUrl: string } | null>(null);
+
+      useEffect(() => {
+        async function fetchUser() {
+          const data = await getUser();
+          setUser({ avatarUrl: data.avatarUrl });
+        }
+        fetchUser();
+      }, []);
+
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-sm">
@@ -26,13 +37,15 @@ export default function Navbar() {
           animate={{ opacity: 1, x: 0 }}
           transition={{ type: "spring", damping: 15 }}
         >
-          <Image
-            src="/placeholder.svg?height=40&width=40"
-            alt="Profile"
-            width={40}
-            height={40}
-            className="rounded-full"
-          />
+          {user && (
+            <Image
+              src={user.avatarUrl}
+              alt="Profile"
+              width={40}
+              height={40}
+              className="rounded-full"
+            />
+          )}
         </motion.div>
 
         <div className="hidden md:flex space-x-4">
