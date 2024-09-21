@@ -11,7 +11,7 @@ WORKDIR /app
 COPY package*.json ./
 
 # Install dependencies
-RUN npm install --frozen-lockfile
+RUN npm install --frozen-lockfile && npm install -g npm@10.8.3
 
 # Copy all the source files
 COPY . .
