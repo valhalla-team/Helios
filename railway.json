@@ -1,16 +1,15 @@
 {
-    "build": [
-        {
-            "target": "staging",
+    "build": {
+        "staging": {
             "dockerfilePath": "Dockerfile",
             "image": "bmsant/helios:dev"
         },
-        {
-            "target": "production",
+        "production": {
             "dockerfilePath": "Dockerfile",
             "image": "bmsant/helios:latest"
         }
-    ],
+    },
+    
     "deploy": {
         "command": "docker-compose up --build"
     }
