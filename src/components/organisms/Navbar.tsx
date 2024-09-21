@@ -1,13 +1,13 @@
 "use client"
 
-import { useState, useEffect } from 'react'
 import Image from 'next/image'
+import { useState } from 'react'
 import { motion } from 'framer-motion'
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
-import { Button } from "@/components/ui/button"
 import { MenuIcon } from 'lucide-react'
-import { ModeToggle } from '@/components/mode-toggle';
-import { getUser } from '@/graphql/queries/getUser'
+import { useUser } from "@/hooks/useUser";
+import { Button } from "@/components/ui/button"
+import { ModeToggle } from "@/components/mode-toggle";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
 
 const navItems = [
   { name: 'Home', href: '#' },
@@ -18,16 +18,15 @@ const navItems = [
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
-  const [user, setUser] = useState<{ avatarUrl: string } | null>(null);
+  const { user, loading, error } = useUser();
 
-      useEffect(() => {
-        async function fetchUser() {
-          const data = await getUser();
-          setUser({ avatarUrl: data.avatarUrl });
-        }
-        fetchUser();
-      }, []);
+  if (loading) {
+    return <div>Loading...</div>; 
+  }
 
+  if (error) {
+    return <div className="text-red-500">Error: {error}</div>; 
+  }
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-sm">
