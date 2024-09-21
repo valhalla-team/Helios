@@ -1,7 +1,7 @@
-type User = {
+export type User = {
     avatarUrl: string;
 };
 
-type UserResponse = {
+export type UserResponse = {
   user: User;
 };
