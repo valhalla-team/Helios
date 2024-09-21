@@ -1,5 +1,6 @@
 import { gql } from '@apollo/client';
 import client from '../apolloClient';
+import { User, UserResponse } from '../types/user';
 
 const GET_USER_QUERY = gql`
   query GetUser {
