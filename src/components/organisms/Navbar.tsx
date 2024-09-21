@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import Image from 'next/image'
+import { motion } from 'framer-motion'
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
 import { Button } from "@/components/ui/button"
 import { MenuIcon } from 'lucide-react'
@@ -20,23 +21,31 @@ export default function Navbar() {
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-sm">
       <div className="container mx-auto px-4 py-2 flex justify-between items-center gap-4">
-        <Image
-          src="/placeholder.svg?height=40&width=40"
-          alt="Profile"
-          width={40}
-          height={40}
-          className="rounded-full"
-        />
+        <motion.div
+          initial={{ opacity: 0, x: -20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ type: "spring", damping: 15 }}
+        >
+          <Image
+            src="/placeholder.svg?height=40&width=40"
+            alt="Profile"
+            width={40}
+            height={40}
+            className="rounded-full"
+          />
+        </motion.div>
 
         <div className="hidden md:flex space-x-4">
           {navItems.map((item) => (
-            <a
+            <motion.a
               key={item.name}
               href={item.href}
               className="text-foreground hover:text-primary transition-colors"
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.95 }}
             >
               {item.name}
-            </a>
+            </motion.a>
           ))}
         </div>
 
