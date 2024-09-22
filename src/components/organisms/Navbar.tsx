@@ -1,32 +1,26 @@
-"use client"
+"use client";
 
-import Image from 'next/image'
-import { useState } from 'react'
-import { motion } from 'framer-motion'
-import { MenuIcon } from 'lucide-react'
-import { useUser } from "@/hooks/useUser";
-import { Button } from "@/components/ui/button"
+import Image from 'next/image';
+import { motion } from 'framer-motion';
+import { MenuIcon } from 'lucide-react';
+import { Button } from "@/components/ui/button";
 import { ModeToggle } from "@/components/mode-toggle";
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { useState } from 'react';
 
 const navItems = [
-  { name: 'Home', href: '#' },
-  { name: 'About', href: '#about' },
-  { name: 'Projects', href: '#projects' },
-  { name: 'Contact', href: '#contact' },
-]
+  { name: "Home", href: "#" },
+  { name: "About", href: "#about" },
+  { name: "Projects", href: "#projects" },
+  { name: "Contact", href: "#contact" },
+];
 
-export default function Navbar() {
-  const [isOpen, setIsOpen] = useState(false)
-  const { user, loading, error } = useUser();
+interface NavbarProps {
+  user: { avatarUrl: string } | null;
+}
 
-  if (loading) {
-    return <div>Loading...</div>; 
-  }
-
-  if (error) {
-    return <div className="text-red-500">Error: {error}</div>; 
-  }
+export default function Navbar({ user }: NavbarProps) {
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-sm">

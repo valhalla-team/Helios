@@ -1,9 +1,12 @@
 import Navbar from "@/components/organisms/Navbar";
+import { fetchUserData } from '@/services/graphqlService';
 
-export default function Home() {
+export default async function Home() {
+  const user = await fetchUserData();
+
   return (
     <main>
-      <Navbar />
+      <Navbar user={user} />
     </main>
   );
 }

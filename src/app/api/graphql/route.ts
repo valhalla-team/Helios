@@ -4,7 +4,7 @@ export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
 
-    const response = await fetch(`${process.env.NEXT_PUBLIC_GRAPHQL_URL}/graphql`, {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_GRAPHQL_URL}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

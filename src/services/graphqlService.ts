@@ -2,7 +2,7 @@ import { GET_USER_QUERY } from "@/constants/graphqlQueries";
 
 export async function fetchUserData() {
   try {
-    const response = await fetch("/api/graphql", {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_GRAPHQL_URL}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
