@@ -1,9 +1,9 @@
-import Profile from "@/components/organisms/Profile";
+import Header from "@/components/organisms/Header";
 
 export default async function Home() {
   return (
     <main>
-      <Profile />
+      <Header />
     </main>
   );
 }

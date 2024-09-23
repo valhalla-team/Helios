@@ -1,87 +1,40 @@
-"use client";
+import {
+  NavigationMenu,
+  NavigationMenuItem,
+  NavigationMenuList,
+} from "@/components/ui/navigation-menu";
+import GenericLinkWithFeature from "../atoms/link/GenericLinkWithFeature";
+import GenericLinkWithComponents from "../atoms/link/GenericLinkWithComponents";
+import GenericLink from "../atoms/link/GenericLink";
+import { items, featured, components } from "@/constants/exemplesLinks";
+import MobileMenu from "../molecules/MobileMenu";
 
-import Image from 'next/image';
-import { motion } from 'framer-motion';
-import { MenuIcon } from 'lucide-react';
-import { Button } from "@/components/ui/button";
-import { ModeToggle } from "@/components/mode-toggle";
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import { useState } from 'react';
-
-const navItems = [
-  { name: "Home", href: "#" },
-  { name: "About", href: "#about" },
-  { name: "Projects", href: "#projects" },
-  { name: "Contact", href: "#contact" },
-];
-
-interface NavbarProps {
-  user: { avatarUrl: string } | null;
-}
-
-export default function Navbar({ user }: NavbarProps) {
-  const [isOpen, setIsOpen] = useState(false);
+export function Navbar() {
+  const mainLinks = [
+    { href: "/", title: "Home" }, 
+    ...items.map(item => ({ href: item.href, title: item.title })),
+  ];
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-sm">
-      <div className="container mx-auto px-4 py-2 flex justify-between items-center gap-4">
-        <motion.div
-          initial={{ opacity: 0, x: -20 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ type: "spring", damping: 15 }}
-        >
-          {user && (
-            <Image
-              src={user.avatarUrl}
-              alt="Profile"
-              width={40}
-              height={40}
-              className="rounded-full"
-            />
-          )}
-        </motion.div>
+    <nav>
+      <div className="hidden md:flex">
+        <NavigationMenu>
+          <NavigationMenuList>
+            <NavigationMenuItem>
+              <GenericLink href="/" title="Home" />
+            </NavigationMenuItem>
+            <NavigationMenuItem>
+              <GenericLinkWithFeature items={items} featured={featured} />
+            </NavigationMenuItem>
+            <NavigationMenuItem>
+              <GenericLinkWithComponents components={components} />
+            </NavigationMenuItem>
+          </NavigationMenuList>
+        </NavigationMenu>
+      </div>
 
-        <div className="hidden md:flex space-x-4">
-          {navItems.map((item) => (
-            <motion.a
-              key={item.name}
-              href={item.href}
-              className="text-foreground hover:text-primary transition-colors"
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              {item.name}
-            </motion.a>
-          ))}
-        </div>
-
-        <div className="flex items-center space-x-2">
-          <ModeToggle />
-
-          <div className="md:hidden">
-            <Sheet open={isOpen} onOpenChange={setIsOpen}>
-              <SheetTrigger asChild>
-                <Button variant="ghost" size="icon">
-                  <MenuIcon />
-                </Button>
-              </SheetTrigger>
-              <SheetContent side="right">
-                <div className="flex flex-col space-y-4 mt-4">
-                  {navItems.map((item) => (
-                    <a
-                      key={item.name}
-                      href={item.href}
-                      className="text-foreground hover:text-primary transition-colors"
-                      onClick={() => setIsOpen(false)}
-                    >
-                      {item.name}
-                    </a>
-                  ))}
-                </div>
-              </SheetContent>
-            </Sheet>
-          </div>
-        </div>
+      <div className="flex md:hidden">
+        <MobileMenu links={mainLinks} />
       </div>
     </nav>
   );

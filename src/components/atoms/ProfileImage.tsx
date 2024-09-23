@@ -1,19 +1,24 @@
+"use client";
+
 import React, { forwardRef } from 'react';
 import Image from 'next/image';
 
 interface ProfileImageProps {
   avatarUrl: string;
   onClick: () => void;
+  alt: string;
+  width: number;
+  height: number;
 }
 
-const ProfileImage = forwardRef<HTMLImageElement, ProfileImageProps>(({ avatarUrl, onClick }, ref) => {
+const ProfileImage = forwardRef<HTMLImageElement, ProfileImageProps>(({ avatarUrl, onClick, alt, width, height }, ref) => {
   return (
     <Image
       ref={ref}
       src={avatarUrl}
-      alt="Profile"
-      width={40}
-      height={40}
+      alt={alt}
+      width={width}
+      height={height}
       className="rounded-full cursor-pointer"
       onClick={onClick}
       priority
