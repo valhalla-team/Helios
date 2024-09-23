@@ -1,9 +1,9 @@
-import Navbar from "@/components/organisms/Navbar";
+import Profile from "@/components/organisms/Profile";
 
-export default function Home() {
+export default async function Home() {
   return (
     <main>
-      <Navbar />
+      <Profile />
     </main>
   );
 }

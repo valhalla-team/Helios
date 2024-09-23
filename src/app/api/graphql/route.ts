@@ -1,20 +1,21 @@
 import { NextRequest, NextResponse } from 'next/server';
+import client from "@/services/apolloClient";
+import { gql } from '@apollo/client';
 
 export async function POST(req: NextRequest) {
   try {
-    const body = await req.json();
+    const { query, variables } = await req.json();
 
-    const response = await fetch(`${process.env.NEXT_PUBLIC_GRAPHQL_URL}/graphql`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(body),
+    const { data, errors } = await client.query({
+      query: gql`${query}`,
+      variables,
     });
 
-    const data = await response.json();
+    if (errors) {
+      return NextResponse.json({ errors }, { status: 400 });
+    }
 
-    return NextResponse.json(data, { status: response.status });
+    return NextResponse.json(data, { status: 200 });
   } catch (error) {
     console.error('Error fetching data:', error);
     return NextResponse.json({ error: 'Failed to fetch data' }, { status: 500 });
