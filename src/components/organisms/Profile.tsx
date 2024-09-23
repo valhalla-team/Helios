@@ -9,7 +9,7 @@ import { Bot } from 'lucide-react';
 const Profile = () => {
   const [user, setUser] = useState<{ avatarUrl: string } | null>(null);
   const [loading, setLoading] = useState(true);
-  const [customError, setError] = useState(false);
+  const [, setError] = useState(false);
 
   const loadUserData = async () => {
     setLoading(true);
@@ -18,7 +18,7 @@ const Profile = () => {
       const userData = await fetchUserData();
       setUser(userData);
     } catch (error) {
-      console.error(customError);
+      console.error(error);
       setError(true);
     } finally {
       setLoading(false);
@@ -28,11 +28,7 @@ const Profile = () => {
   useEffect(() => {
     loadUserData();
   }, []);
-
-  const handleRetry = () => {
-    loadUserData();
-  };
-
+  
   if (loading) {
     return <div className="animate-pulse w-10 h-10 bg-accent rounded-full" />;
   }
@@ -46,7 +42,6 @@ const Profile = () => {
             <Bot className="mr-2" onClick={() => {}} />
         )
       }
-      onLogout={handleRetry}
     />
   );
 };

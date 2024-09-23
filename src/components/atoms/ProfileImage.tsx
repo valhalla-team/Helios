@@ -21,4 +21,6 @@ const ProfileImage = forwardRef<HTMLImageElement, ProfileImageProps>(({ avatarUr
   );
 });
 
+ProfileImage.displayName = 'ProfileImage';
+
 export default ProfileImage;

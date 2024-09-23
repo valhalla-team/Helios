@@ -6,10 +6,9 @@ import { Button } from "../ui/button";
 
 interface ProfileSidebarProps {
   trigger: JSX.Element;
-  onLogout: () => void;
 }
 
-const ProfileSidebar = ({ trigger, onLogout }: ProfileSidebarProps) => {
+const ProfileSidebar = ({ trigger}: ProfileSidebarProps) => {
   return (
     <CustomSheet
       trigger={trigger}
