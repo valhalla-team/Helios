@@ -2,7 +2,7 @@ import { GET_USER_QUERY } from "@/constants/graphqlQueries";
 
 export async function fetchUserData() {
   try {
-    const response = await fetch(`${process.env.NEXT_PUBLIC_GRAPHQL_URL}`, {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_ENDPOINT_API}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -16,8 +16,8 @@ export async function fetchUserData() {
     if (result.errors) {
       throw new Error(result.errors[0].message);
     }
-
-    return result.data.user;
+    
+    return result.user;
   } catch (error) {
     console.error("Error fetching user data:", error);
     throw error;
