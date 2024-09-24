@@ -1,3 +1,5 @@
+"use client";
+
 import { ReactNode } from 'react';
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { useState } from 'react';
@@ -24,12 +26,8 @@ export const CustomSheet = ({
     <Sheet open={isOpen} onOpenChange={setIsOpen}>
       <SheetTrigger asChild>{trigger}</SheetTrigger>
       <SheetContent side={side}>
-        {title && (
-          <DialogTitle>{title}</DialogTitle> 
-        )}
-        {description && (
-          <Description>{description}</Description>
-        )}
+        {title && <DialogTitle>{title}</DialogTitle>}
+        {description && <Description>{description}</Description>}
         <div className="flex flex-col space-y-4 mt-4" role="document">
           {content}
         </div>
