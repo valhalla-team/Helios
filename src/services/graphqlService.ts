@@ -1,4 +1,4 @@
-import { GET_USER_QUERY } from "@/constants/graphqlQueries";
+import { GET_USER_QUERY } from "@/lib/graphqlQueries";
 
 export async function fetchUserData() {
   try {
