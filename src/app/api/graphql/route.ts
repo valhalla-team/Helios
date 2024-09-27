@@ -7,7 +7,9 @@ export async function POST(req: NextRequest) {
     const { query, variables } = await req.json();
 
     const { data, errors } = await client.query({
-      query: gql`${query}`,
+      query: gql`
+        ${query}
+      `,
       variables,
     });
 
