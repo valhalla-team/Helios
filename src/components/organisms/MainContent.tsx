@@ -1,8 +1,10 @@
 "use client"
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { MAIN_CONTENT_DATA } from "@/lib/constants"
+import { ProfileCardError } from "../molecules/ProfileCard/ProfileCardError"
+import { ProfileCardFallback } from "../molecules/ProfileCard/ProfileCardFallback"
+import { ProfileCard } from "../molecules/ProfileCard/ProfileCard"
 
 export default function MainContent() {
   const { welcome} = MAIN_CONTENT_DATA
@@ -17,17 +19,10 @@ export default function MainContent() {
       </Card>
 
       <Card>
-        <CardContent className="pt-6">
-          <Tabs defaultValue="personal">
-            <TabsList className="grid w-full grid-cols-3">
-              <TabsTrigger value="personal">Personal</TabsTrigger>
-              <TabsTrigger value="social">Social</TabsTrigger>
-              <TabsTrigger value="professional">Professional</TabsTrigger>
-            </TabsList>
-            <TabsContent value="personal"></TabsContent>
-            <TabsContent value="social"></TabsContent>
-            <TabsContent value="professional"></TabsContent>
-          </Tabs>
+        <CardContent className=" flex flex-row justify-around pt-6">
+          <ProfileCardFallback />
+          <ProfileCard />
+          <ProfileCardError />
         </CardContent>
       </Card>
     </div>

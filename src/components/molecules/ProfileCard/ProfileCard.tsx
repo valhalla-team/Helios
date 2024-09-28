@@ -14,7 +14,7 @@ export function ProfileCard() {
   }
 
   if (error || !user) {
-    return <ProfileCardError error={error} />;
+    return <ProfileCardError />;
   }
 
   return (
@@ -25,7 +25,7 @@ export function ProfileCard() {
             <AvatarImage src={user.avatarUrl} alt={user.name} />
             <AvatarFallback>{user.name[0]}</AvatarFallback>
           </Avatar>
-          <div className="space-y-2">
+          <div className="space-y-2 text-center md:text-start">
             <h2 className="mt-2 text-xl font-semibold">{user.name}</h2>
             <p className="text-sm text-muted-foreground">{user.email}</p>
             <p className="text-sm text-muted-foreground">{user.location}</p>

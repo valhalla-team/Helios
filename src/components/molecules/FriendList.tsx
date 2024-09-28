@@ -18,7 +18,7 @@ export default function FriendsList({ friends }: FriendsListProps) {
         <CardTitle>Friends</CardTitle>
       </CardHeader>
       <CardContent>
-        <div className="flex flex-wrap justify-around gap-4">
+        <div className="flex flex-wrap justify-around sm:grid sm:grid-cols-6 md:grid md:grid-cols-3 lg:grid lg:grid-cols-4 gap-4">
           {friends.map((friend) => (
             <div
               key={friend.id}
@@ -34,7 +34,9 @@ export default function FriendsList({ friends }: FriendsListProps) {
                   {friend.name.slice(0, 2).toUpperCase()}
                 </AvatarFallback>
               </Avatar>
-              <span className="text-xs">{friend.name}</span>
+              <span className="text-xs max-w-[7ch] truncate">
+                {friend.name}
+              </span>
             </div>
           ))}
         </div>
