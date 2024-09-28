@@ -1,5 +1,4 @@
-export const GET_USER_QUERY = `
-  query GetUser {
+export const GET_USER_QUERY = `{
     user {
       avatarUrl
       email
