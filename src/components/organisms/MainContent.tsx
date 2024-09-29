@@ -2,9 +2,6 @@
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { MAIN_CONTENT_DATA } from "@/lib/constants"
-import { ProfileCardError } from "../molecules/ProfileCard/ProfileCardError"
-import { ProfileCardFallback } from "../molecules/ProfileCard/ProfileCardFallback"
-import { ProfileCard } from "../molecules/ProfileCard/ProfileCard"
 
 export default function MainContent() {
   const { welcome} = MAIN_CONTENT_DATA
@@ -20,9 +17,10 @@ export default function MainContent() {
 
       <Card>
         <CardContent className=" flex flex-row justify-around pt-6">
-          <ProfileCardFallback />
-          <ProfileCard />
-          <ProfileCardError />
+          Mussum Ipsum, cacilds vidis litro abertis. Detraxit consequat et quo
+          num tendi nada. Não sou faixa preta cumpadi, sou preto inteiris,
+          inteiris. Si num tem leite então bota uma pinga aí cumpadi! Copo
+          furadis é disculpa de bebadis, arcu quam euismod magna.
         </CardContent>
       </Card>
     </div>

@@ -2,7 +2,7 @@
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Card, CardContent } from "@/components/ui/card";
-import useFetchUserData from "@/hooks/useFetchUserData";
+import useFetchUserData from "@/hooks/useUserData";
 import { ProfileCardFallback } from "./ProfileCardFallback";
 import { ProfileCardError } from "./ProfileCardError";
 

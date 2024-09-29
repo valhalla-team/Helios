@@ -1,6 +1,4 @@
-import { GET_USER_QUERY } from "@/lib/graphqlQueries";
-
-export async function fetchUserData() {
+export async function fetchData(query: string) {
   try {
     const response = await fetch(`/api/graphql`, {
       method: "POST",
@@ -8,7 +6,7 @@ export async function fetchUserData() {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        query: GET_USER_QUERY,
+        query,
       }),
     });
 
@@ -17,9 +15,9 @@ export async function fetchUserData() {
       throw new Error(result.errors[0].message);
     }
 
-    return result.user;
+    return result;
   } catch (error) {
-    console.error("Error fetching user data:", error);
+    console.error("Error fetching data:", error);
     throw error;
   }
 }
