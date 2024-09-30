@@ -7,7 +7,7 @@ export default function MainContent() {
   const { welcome} = MAIN_CONTENT_DATA
 
   return (
-    <div className="space-y-6 flex-grow">
+    <div className="space-y-6 basis-1/2 flex-grow">
       <Card>
         <CardHeader>
           <CardTitle>{welcome}</CardTitle>
@@ -17,10 +17,7 @@ export default function MainContent() {
 
       <Card>
         <CardContent className=" flex flex-row justify-around pt-6">
-          Mussum Ipsum, cacilds vidis litro abertis. Detraxit consequat et quo
-          num tendi nada. Não sou faixa preta cumpadi, sou preto inteiris,
-          inteiris. Si num tem leite então bota uma pinga aí cumpadi! Copo
-          furadis é disculpa de bebadis, arcu quam euismod magna.
+          Main Content
         </CardContent>
       </Card>
     </div>
