@@ -1,5 +1,5 @@
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
-import { Avatar, AvatarFallback } from '@radix-ui/react-avatar';
+import { Avatar, AvatarFallback, AvatarImage } from '@radix-ui/react-avatar';
 import { User } from 'lucide-react';
 
 interface GridItemProps {
@@ -35,14 +35,14 @@ const Grid: React.FC<GridProps> = ({
 
   const itemsToRender = [...data, ...placeholders];
 
-  const renderAvatar = (item: GridItemProps, _isPlaceholder: boolean) => (
+  const renderAvatar = (item: GridItemProps, isPlaceholder: boolean) => (
     <Avatar
       className={`h-12 w-12 rounded-sm ${
         isLoading ? "animate-pulse bg-muted" : ""
-      }`}
+      } ${isPlaceholder? "opacity-50" : ""}  `}
     >
       {item.avatarUrl ? (
-        <img src={item.avatarUrl} alt={item.name} className="rounded-md" />
+        <AvatarImage src={item.avatarUrl} alt={item.name} className="rounded-md" />
       ) : (
         <AvatarFallback className="text-muted bg-opacity-10 rounded-sm flex items-center justify-center h-full w-full">
           {hasError ? (
